@@ -23,6 +23,7 @@ cmake --build build
 ## GitHub and Git Setup (For New Users)
 
 Great setup how-to by one of better professors here at UofL, very informative.
+https://www.youtube.com/watch?v=lS_7f_ubnHY
 
 ### 1. Install Git
 - Download Git: https://git-scm.com/downloads
