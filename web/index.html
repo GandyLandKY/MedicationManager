@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedicationManager Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="username">Welcome, User</h1>
+        <div class="actions">
+            <button onclick="openAddModal()">Add Medication</button>
+            <button onclick="manageUsers()" style="background: #4caf50; color: #fff;">Manage Family Members</button>
+        </div>
+        <table id="medTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Dosage</th>
+                    <th>Frequency</th>
+                    <th>Total Pills</th>
+                    <th>Fill Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Medication rows will go here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add Medication Modal -->
+    <div class="modal" id="addModal">
+        <div class="modal-content">
+            <h3>Add Medication</h3>
+            <form id="addMedForm">
+                <label>Name</label>
+                <input type="text" id="medName" required>
+                <label>Dosage</label>
+                <input type="text" id="medDosage" required>
+                <label>Frequency</label>
+                <input type="text" id="medFrequency" required>
+                <label>Total Pills</label>
+                <input type="number" id="medTotal" required min="1">
+                <label>Fill Date</label>
+                <input type="date" id="medFillDate" required>
+                <button type="submit">Add</button>
+                <button type="button" onclick="closeAddModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Example: Set username dynamically
+        const username = "JohnDoe"; // Replace with actual username logic
+        document.getElementById('username').textContent = `Welcome, ${username}`;
+
+        let medications = [];
+
+        function renderTable() {
+            const tbody = document.querySelector('#medTable tbody');
+            tbody.innerHTML = '';
+            medications.forEach((med, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${med.name}</td>
+                    <td>${med.dosage}</td>
+                    <td>${med.frequency}</td>
+                    <td>${med.total}</td>
+                    <td>${med.fillDate}</td>
+                    <td>
+                        <button class="remove-btn" onclick="removeMedication(${idx})">Remove</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openAddModal() {
+            document.getElementById('addModal').style.display = 'flex';
+        }
+
+        function closeAddModal() {
+            document.getElementById('addModal').style.display = 'none';
+            document.getElementById('addMedForm').reset();
+        }
+
+        function manageUsers() {
+            // Placeholder for manage family members functionality
+            alert("Manage Family Members feature is not implemented yet.");
+        }
+
+        document.getElementById('addMedForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const med = {
+                name: document.getElementById('medName').value,
+                dosage: document.getElementById('medDosage').value,
+                frequency: document.getElementById('medFrequency').value,
+                total: document.getElementById('medTotal').value,
+                fillDate: document.getElementById('medFillDate').value
+            };
+            medications.push(med);
+            renderTable();
+            closeAddModal();
+        });
+
+        function removeMedication(index) {
+            medications.splice(index, 1);
+            renderTable();
+        }
+
+        // Initial render
+        renderTable();
+    </script>
+</body>
+</html>
