@@ -25,6 +25,10 @@ const std::vector<Schedule>& User::getSchedules() const {
     return schedules;
 }
 
+std::vector<Schedule>& User::getSchedules() {
+    return schedules;
+}
+
 bool User::editScheduleName(const std::string& scheduleID, const std::string& newName) {
     auto it = std::find_if(
         schedules.begin(),

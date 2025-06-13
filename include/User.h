@@ -20,6 +20,7 @@ class User {
         void addSchedule(const Schedule& schedule);
         bool deleteSchedule(const std::string& scheduleID);
         const std::vector<Schedule>& getSchedules() const;
+        std::vector<Schedule>& getSchedules();
         bool editScheduleName(const std::string& scheduleID, const std::string& newName);
 
         //accessors

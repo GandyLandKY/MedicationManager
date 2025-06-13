@@ -24,4 +24,5 @@ class Account {
 
         //optional getter for all profiles
         const std::vector<User>& getUserProfiles() const;
-}
+        std::vector<User>& getUserProfiles();
+};

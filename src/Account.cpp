@@ -32,3 +32,7 @@ void Account::editEmail(const std::string& newEmail) {
 const std::vector<User>& Account::getUserProfiles() const {
     return userProfiles;
 }
+
+std::vector<User>& Account::getUserProfiles() {
+    return userProfiles;
+}
