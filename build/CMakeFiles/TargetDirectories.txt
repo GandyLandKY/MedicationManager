@@ -1,0 +1,3 @@
+/Users/jonahbuckley/MedicationManager/build/CMakeFiles/MedicationManager.dir
+/Users/jonahbuckley/MedicationManager/build/CMakeFiles/edit_cache.dir
+/Users/jonahbuckley/MedicationManager/build/CMakeFiles/rebuild_cache.dir
