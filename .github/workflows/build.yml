@@ -53,28 +53,28 @@ jobs:
           name: MedicationManager-exe
           path: build/Debug/MedicationManager.exe
 
-  deploy:
-    name: Deploy to Production VM
-    needs: build
-    runs-on: [self-hosted, Production]
-    continue-on-error: true
-    environment: Production  # manual approval button
+  # deploy:
+  #   name: Deploy to Production VM
+  #   needs: build
+  #   runs-on: [self-hosted, Production]
+  #   continue-on-error: true
+  #   environment: Production  # manual approval button
 
-    steps:
-      - name: 📥 Download build artifact
-        uses: actions/download-artifact@v4  # match upload version :contentReference[oaicite:2]{index=2}
-        with:
-          name: MedicationManager-exe
+  #   steps:
+  #     - name: 📥 Download build artifact
+  #       uses: actions/download-artifact@v4  # match upload version :contentReference[oaicite:2]{index=2}
+  #       with:
+  #         name: MedicationManager-exe
 
-      - name: 🚚 Copy to target directory
-        run: |
-          $dest = 'C:\Apps\MedicationManager'
-          if (-not (Test-Path $dest)) {
-            New-Item -ItemType Directory -Path $dest | Out-Null
-          }
-          Move-Item MedicationManager.exe $dest -Force
+  #     - name: 🚚 Copy to target directory
+  #       run: |
+  #         $dest = 'C:\Apps\MedicationManager'
+  #         if (-not (Test-Path $dest)) {
+  #           New-Item -ItemType Directory -Path $dest | Out-Null
+  #         }
+  #         Move-Item MedicationManager.exe $dest -Force
 
-      - name: ✔️ Verify deployment
-        run: |
-          Write-Host "Deployed files to $dest:"
-          Get-ChildItem $dest
+  #     - name: ✔️ Verify deployment
+  #       run: |
+  #         Write-Host "Deployed files to $dest:"
+  #         Get-ChildItem $dest
