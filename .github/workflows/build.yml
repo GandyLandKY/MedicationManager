@@ -24,7 +24,6 @@ on:
     branches:
       - main
   pull_request:
-  # allow manual runs (if you ever want to rebuild + deploy together by clicking “Run workflow”)
   workflow_dispatch:
 
 jobs:
@@ -37,9 +36,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 🎯 Setup CMake
-        uses: lukka/get-cmake@v3
+        # switch to the ‘latest’ tag (v4.x.x under the hood)
+        uses: lukka/get-cmake@latest  # :contentReference[oaicite:0]{index=0}
         with:
-          cmake-version: '3.27.5'
+          cmakeVersion: '3.27.5'      # pin or remove as desired
 
       - name: ⚙️ Configure
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
@@ -48,7 +48,7 @@ jobs:
         run: cmake --build build --config Debug
 
       - name: 📦 Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # bump to v4 to avoid deprecation error :contentReference[oaicite:1]{index=1}
         with:
           name: MedicationManager-exe
           path: build/Debug/MedicationManager.exe
@@ -57,16 +57,12 @@ jobs:
     name: Deploy to Production VM
     needs: build
     runs-on: [self-hosted, Production]
-    # this ensures that even if deploy fails, the workflow overall is “successful”
     continue-on-error: true
-
-    # tie this job to the “Production” environment—
-    # this will surface a manual approval button in the Actions UI
-    environment: Production
+    environment: Production  # manual approval button
 
     steps:
       - name: 📥 Download build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4  # match upload version :contentReference[oaicite:2]{index=2}
         with:
           name: MedicationManager-exe
 
