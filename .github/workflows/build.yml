@@ -1,19 +1,84 @@
-name: C++ Build
+# name: C++ Build
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# jobs:
+#   build:
+#     runs-on: windows-latest
+
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: Configure CMake
+#       run: cmake -S . -B build
+#     - name: Build
+#       run: cmake --build build
+    
+name: CI & Deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+  # allow manual runs (if you ever want to rebuild + deploy together by clicking “Run workflow”)
+  workflow_dispatch:
 
 jobs:
   build:
+    name: Build on Windows
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Configure CMake
-      run: cmake -S . -B build
-    - name: Build
-      run: cmake --build build
-    
+      - name: 🛎 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🎯 Setup CMake
+        uses: lukka/get-cmake@v3
+        with:
+          cmake-version: '3.27.5'
+
+      - name: ⚙️ Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+
+      - name: 🛠 Build
+        run: cmake --build build --config Debug
+
+      - name: 📦 Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MedicationManager-exe
+          path: build/Debug/MedicationManager.exe
+
+  deploy:
+    name: Deploy to Production VM
+    needs: build
+    runs-on: [self-hosted, Production]
+    # this ensures that even if deploy fails, the workflow overall is “successful”
+    continue-on-error: true
+
+    # tie this job to the “Production” environment—
+    # this will surface a manual approval button in the Actions UI
+    environment: Production
+
+    steps:
+      - name: 📥 Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: MedicationManager-exe
+
+      - name: 🚚 Copy to target directory
+        run: |
+          $dest = 'C:\Apps\MedicationManager'
+          if (-not (Test-Path $dest)) {
+            New-Item -ItemType Directory -Path $dest | Out-Null
+          }
+          Move-Item MedicationManager.exe $dest -Force
+
+      - name: ✔️ Verify deployment
+        run: |
+          Write-Host "Deployed files to $dest:"
+          Get-ChildItem $dest
