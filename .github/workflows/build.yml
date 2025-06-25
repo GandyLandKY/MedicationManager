@@ -42,16 +42,16 @@ jobs:
           cmakeVersion: '3.27.5'      # pin or remove as desired
 
       - name: ⚙️ Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
       - name: 🛠 Build
-        run: cmake --build build --config Debug
+        run: cmake --build build --config Release
 
       - name: 📦 Upload build artifact
         uses: actions/upload-artifact@v4  # bump to v4 to avoid deprecation error :contentReference[oaicite:1]{index=1}
         with:
           name: MedicationManager-exe
-          path: build/Debug/MedicationManager.exe
+          path: build/Release/MedicationManager.exe
 
   # deploy:
   #   name: Deploy to Production VM
