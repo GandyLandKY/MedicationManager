@@ -1,7 +1,11 @@
 #include "Account.h"
 
-Account::Account (const std::string& id, const std::string& email)
-    : id(id), email(email)
+Account::Account (const std::string& id, 
+                  const std::string& email,
+                  const std::string& password)
+    : id(id), 
+    email(email),
+    password(password)
 {}
 
 void Account::addUser(const User& user) {
@@ -21,12 +25,24 @@ bool Account::deleteUser(const std::string& userID) {
     return false;
 }
 
+std::string Account::getId() const {
+    return id;
+}
+
 std::string Account::getEmail() const {
     return email;
 }
 
-void Account::editEmail(const std::string& newEmail) {
+std::string Account::getPassword() const {
+    return password;
+}
+
+void Account::setEmail(const std::string& newEmail) {
     email = newEmail;
+}
+
+void Account::setPassword(const std::string& newPassword) {
+    password = newPassword;
 }
 
 const std::vector<User>& Account::getUserProfiles() const {

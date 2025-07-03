@@ -1,0 +1,10 @@
+{
+    "accounts": [
+        {
+            "email": "demo@example.com",
+            "id": "acct-000",
+            "password": "secret",
+            "userProfiles": []
+        }
+    ]
+}

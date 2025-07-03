@@ -11,16 +11,24 @@ class Account {
     private:
         std::string id;
         std::string email;
+        std::string password;
         std::vector<User> userProfiles;
 
     public:
-        Account (const std::string& id, const std::string& email);
+        Account (const std::string& id, 
+                const std::string& email, 
+                const std::string& password);
 
         //operations
         void addUser(const User& user);
         bool deleteUser(const std::string& userID);
+
+        //getters/setters
+        std::string getId() const;
         std::string getEmail() const;
-        void editEmail(const std::string& newEmail);
+        std::string getPassword() const;
+        void setEmail(const std::string& newEmail);
+        void setPassword(const std::string& newPassword);
 
         //optional getter for all profiles
         const std::vector<User>& getUserProfiles() const;
