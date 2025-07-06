@@ -32,26 +32,31 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: 🛎 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: 🎯 Setup CMake
+      - name: Setup CMake
         # switch to the ‘latest’ tag (v4.x.x under the hood)
         uses: lukka/get-cmake@latest  # :contentReference[oaicite:0]{index=0}
         with:
           cmakeVersion: '3.27.5'      # pin or remove as desired
 
-      - name: ⚙️ Configure
+      - name: Configure
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
-      - name: 🛠 Build
+      - name: Build
         run: cmake --build build --config Release
 
-      - name: 📦 Upload build artifact
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4  # bump to v4 to avoid deprecation error :contentReference[oaicite:1]{index=1}
         with:
           name: MedicationManager-exe
           path: build/Release/MedicationManager.exe
+
+      - name: Test
+        run: |
+          cd build
+          ctest --verbose
 
   # deploy:
   #   name: Deploy to Production VM
