@@ -53,10 +53,14 @@ jobs:
           name: MedicationManager-exe
           path: build/Release/MedicationManager.exe
 
-      - name: Test
+      - name: Run Tests
         run: |
           cd build
-          ctest --verbose
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            ctest -C Release --output-on-failure
+          else
+            ctest --output-on-failure
+          fi
 
   # deploy:
   #   name: Deploy to Production VM
