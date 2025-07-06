@@ -8,20 +8,22 @@
 # add_executable(MedicationManager src/main.cpp src/MedicationReminder.cpp)
 ################################################################################################end of prior cmake settings
 
-cmake_minimum_required(VERSION 3.10)
-project(MedicationManager)
+cmake_minimum_required(VERSION 3.14)
+project(MedicationManager LANGUAGES CXX)
 
+# Use C++17
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# where to find your headers:
+# Where to find your headers (including nlohmann/json.hpp now)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-# grab every .cpp in src/:
+# Grab every .cpp under src/
 file(GLOB SRC_FILES
-    ${PROJECT_SOURCE_DIR}/src/*.cpp
+  ${PROJECT_SOURCE_DIR}/src/*.cpp
 )
 
-# build the executable from all .cpp’s:
+# Build the executable
 add_executable(MedicationManager
-    ${SRC_FILES}
+  ${SRC_FILES}
 )
