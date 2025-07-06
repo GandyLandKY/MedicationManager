@@ -56,11 +56,7 @@ jobs:
       - name: Run Tests
         run: |
           cd build
-          if [ "${{ runner.os }}" == "Windows" ]; then
-            ctest -C Release --output-on-failure
-          else
-            ctest --output-on-failure
-          fi
+          ctest -C Release --output-on-failure
 
   # deploy:
   #   name: Deploy to Production VM
