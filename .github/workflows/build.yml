@@ -46,7 +46,6 @@ jobs:
 
       - name: Copy EXE into Electron App
         run: |
-          mkdir electron/app
           copy build/Release/MedicationManager.exe electron/app/
 
       - name: Setup Node
