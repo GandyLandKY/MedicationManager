@@ -51,7 +51,9 @@ jobs:
         uses: actions/upload-artifact@v4  # bump to v4 to avoid deprecation error :contentReference[oaicite:1]{index=1}
         with:
           name: MedicationManager-exe
-          path: build/Release/MedicationManager.exe
+          path: |
+            build/Release/MedicationManager.exe
+            data.json
 
       - name: Run Tests
         run: |
