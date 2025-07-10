@@ -1,10 +1,359 @@
 {
-    "accounts": [
+  "accounts": [
+    {
+      "id": "acct-001",
+      "email": "alice@yahoo.com",
+      "password": "secret",
+      "userProfiles": [
         {
-            "email": "demo@example.com",
-            "id": "acct-000",
-            "password": "secret",
-            "userProfiles": []
+          "id": "user-001",
+          "username": "alice",
+          "schedules": [
+            {
+              "id": "sched-001",
+              "scheduleName": "Morning Routine",
+              "startDate": "2025-06-01",
+              "endDate": "2025-12-31",
+              "medications": [
+                {
+                  "id": "med-001",
+                  "name": "Lisinopril",
+                  "dosage": "10mg",
+                  "frequency": "1x/day",
+                  "totalPills": 30,
+                  "fillDate": "2025-06-01",
+                  "refillThreshold": 5
+                },
+                {
+                  "id": "med-002",
+                  "name": "Metformin",
+                  "dosage": "500mg",
+                  "frequency": "2x/day",
+                  "totalPills": 60,
+                  "fillDate": "2025-06-01",
+                  "refillThreshold": 10
+                }
+              ]
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "id": "acct-002",
+      "email": "bob@outlook.com",
+      "password": "secret",
+      "userProfiles": [
+        {
+          "id": "user-002",
+          "username": "bob",
+          "schedules": [
+            {
+              "id": "sched-002",
+              "scheduleName": "Evening Meds",
+              "startDate": "2025-07-01",
+              "endDate": "2025-12-31",
+              "medications": [
+                {
+                  "id": "med-003",
+                  "name": "Atorvastatin",
+                  "dosage": "20mg",
+                  "frequency": "1x/day",
+                  "totalPills": 30,
+                  "fillDate": "2025-07-01",
+                  "refillThreshold": 5
+                },
+                {
+                  "id": "med-004",
+                  "name": "Levothyroxine",
+                  "dosage": "50mcg",
+                  "frequency": "1x/day",
+                  "totalPills": 30,
+                  "fillDate": "2025-07-01",
+                  "refillThreshold": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acct-003",
+      "email": "carla@gmail.com",
+      "password": "secret",
+      "userProfiles": [
+        {
+          "id": "user-003",
+          "username": "carla",
+          "schedules": [
+            {
+              "id": "sched-003",
+              "scheduleName": "Bedtime Meds",
+              "startDate": "2025-08-01",
+              "endDate": "2025-12-31",
+              "medications": [
+                {
+                  "id": "med-005",
+                  "name": "Sertraline",
+                  "dosage": "50mg",
+                  "frequency": "1x/day",
+                  "totalPills": 30,
+                  "fillDate": "2025-08-01",
+                  "refillThreshold": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acct-004",
+      "email": "dave@aol.com",
+      "password": "secret",
+      "userProfiles": [
+        {
+          "id": "user-004",
+          "username": "dave",
+          "schedules": [
+            {
+              "id": "sched-004",
+              "scheduleName": "Daily Regimen",
+              "startDate": "2025-09-01",
+              "endDate": "2025-12-31",
+              "medications": [
+                {
+                  "id": "med-006",
+                  "name": "Omeprazole",
+                  "dosage": "20mg",
+                  "frequency": "1x/day",
+                  "totalPills": 30,
+                  "fillDate": "2025-09-01",
+                  "refillThreshold": 5
+                },
+                {
+                  "id": "med-007",
+                  "name": "Albuterol",
+                  "dosage": "2puffs",
+                  "frequency": "as needed",
+                  "totalPills": 50,
+                  "fillDate": "2025-09-01",
+                  "refillThreshold": 10
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acct-005",
+      "email": "emma@apple.com",
+      "password": "secret",
+      "userProfiles": [
+        {
+          "id": "user-005",
+          "username": "emma",
+          "schedules": [
+            {
+              "id": "sched-005",
+              "scheduleName": "AM Pills",
+              "startDate": "2025-10-01",
+              "endDate": "2025-12-31",
+              "medications": [
+                {
+                  "id": "med-008",
+                  "name": "Amlodipine",
+                  "dosage": "5mg",
+                  "frequency": "1x/day",
+                  "totalPills": 30,
+                  "fillDate": "2025-10-01",
+                  "refillThreshold": 5
+                },
+                {
+                  "id": "med-009",
+                  "name": "Hydrochlorothiazide",
+                  "dosage": "25mg",
+                  "frequency": "1x/day",
+                  "totalPills": 30,
+                  "fillDate": "2025-10-01",
+                  "refillThreshold": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acct-006",
+      "email": "frank@yahoo.com",
+      "password": "secret",
+      "userProfiles": [
+        {
+          "id": "user-006",
+          "username": "frank",
+          "schedules": [
+            {
+              "id": "sched-006",
+              "scheduleName": "Lunch Meds",
+              "startDate": "2025-06-15",
+              "endDate": "2025-12-31",
+              "medications": [
+                {
+                  "id": "med-010",
+                  "name": "Metoprolol",
+                  "dosage": "25mg",
+                  "frequency": "2x/day",
+                  "totalPills": 60,
+                  "fillDate": "2025-06-15",
+                  "refillThreshold": 10
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acct-007",
+      "email": "grace@outlook.com",
+      "password": "secret",
+      "userProfiles": [
+        {
+          "id": "user-007",
+          "username": "grace",
+          "schedules": [
+            {
+              "id": "sched-007",
+              "scheduleName": "Evening Routine",
+              "startDate": "2025-07-15",
+              "endDate": "2025-12-31",
+              "medications": [
+                {
+                  "id": "med-011",
+                  "name": "Gabapentin",
+                  "dosage": "300mg",
+                  "frequency": "3x/day",
+                  "totalPills": 90,
+                  "fillDate": "2025-07-15",
+                  "refillThreshold": 15
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acct-008",
+      "email": "henry@gmail.com",
+      "password": "secret",
+      "userProfiles": [
+        {
+          "id": "user-008",
+          "username": "henry",
+          "schedules": [
+            {
+              "id": "sched-008",
+              "scheduleName": "Bedtime Routine",
+              "startDate": "2025-08-15",
+              "endDate": "2025-12-31",
+              "medications": [
+                {
+                  "id": "med-012",
+                  "name": "Citalopram",
+                  "dosage": "20mg",
+                  "frequency": "1x/day",
+                  "totalPills": 30,
+                  "fillDate": "2025-08-15",
+                  "refillThreshold": 5
+                },
+                {
+                  "id": "med-013",
+                  "name": "Vitamin D",
+                  "dosage": "1000IU",
+                  "frequency": "1x/day",
+                  "totalPills": 30,
+                  "fillDate": "2025-08-15",
+                  "refillThreshold": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acct-009",
+      "email": "ivy@aol.com",
+      "password": "secret",
+      "userProfiles": [
+        {
+          "id": "user-009",
+          "username": "ivy",
+          "schedules": [
+            {
+              "id": "sched-009",
+              "scheduleName": "Daily Meds",
+              "startDate": "2025-09-15",
+              "endDate": "2025-12-31",
+              "medications": [
+                {
+                  "id": "med-014",
+                  "name": "Prednisone",
+                  "dosage": "10mg",
+                  "frequency": "1x/day",
+                  "totalPills": 30,
+                  "fillDate": "2025-09-15",
+                  "refillThreshold": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acct-010",
+      "email": "jack@apple.com",
+      "password": "secret",
+      "userProfiles": [
+        {
+          "id": "user-010",
+          "username": "jack",
+          "schedules": [
+            {
+              "id": "sched-010",
+              "scheduleName": "Morning Dose",
+              "startDate": "2025-10-15",
+              "endDate": "2025-12-31",
+              "medications": [
+                {
+                  "id": "med-015",
+                  "name": "Insulin",
+                  "dosage": "10 units",
+                  "frequency": "2x/day",
+                  "totalPills": 60,
+                  "fillDate": "2025-10-15",
+                  "refillThreshold": 10
+                },
+                {
+                  "id": "med-016",
+                  "name": "Furosemide",
+                  "dosage": "40mg",
+                  "frequency": "1x/day",
+                  "totalPills": 30,
+                  "fillDate": "2025-10-15",
+                  "refillThreshold": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
+

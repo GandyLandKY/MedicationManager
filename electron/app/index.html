@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MedicationManager Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 id="username">Welcome, User</h1>
+
+    <div class="actions">
+      <button onclick="openAddModal()">Add Medication</button>
+      <button onclick="manageUsers()">Manage Family Members</button>
+      <button id="run-backend" class="run-backend-btn">Run MedicationManager.exe</button>
+    </div>
+
+    <table id="medTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Dosage</th>
+          <th>Frequency</th>
+          <th>Total Pills</th>
+          <th>Fill Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Medication rows will be dynamically inserted here -->
+      </tbody>
+    </table>
+
+    <pre id="backendOutput" class="backend-output"></pre>
+  </div>
+
+  <!-- Add Medication Modal -->
+  <div class="modal" id="addModal">
+    <div class="modal-content">
+      <h3>Add Medication</h3>
+      <form id="addMedForm">
+        <label>Name</label>
+        <input type="text" id="medName" required>
+
+        <label>Dosage</label>
+        <input type="text" id="medDosage" required>
+
+        <label>Frequency</label>
+        <input type="text" id="medFrequency" required>
+
+        <label>Total Pills</label>
+        <input type="number" id="medTotal" required min="1">
+
+        <label>Fill Date</label>
+        <input type="date" id="medFillDate" required>
+
+        <button type="submit">Add</button>
+        <button type="button" onclick="closeAddModal()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Load Renderer Script -->
+  <script src="renderer.js"></script>
+</body>
+</html>
