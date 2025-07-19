@@ -71,7 +71,7 @@ jobs:
   deploy-development:
     name: Deploy to Development
     needs: build
-    runs-on: '["self-hosted","Windows","MedicationManager","Dev"]'
+    runs-on: [self-hosted,Windows,MedicationManager,Dev]
     environment: Development
 
     steps:
@@ -111,7 +111,7 @@ jobs:
   deploy-production:
     name: Deploy to Production
     needs: deploy-development
-    runs-on: '["self-hosted","Windows","MedicationManager","Prod"]'
+    runs-on: [self-hosted,Windows,MedicationManager,Prod]
     environment: Production
 
     steps:
