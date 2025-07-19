@@ -66,4 +66,84 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MedicationManager-Electron-Windows
-          path: electron/dist/
+          path: electron/dist
+
+  deploy-development:
+    name: Deploy to Development
+    needs: build
+    runs-on: [self-hosted, Windows, MedicationManager, scheduledTask]
+    environment: Development
+
+    steps:
+      - name: Download C++ EXE Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: MedicationManager-exe
+          path: app
+
+      - name: Download Electron App Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: MedicationManager-Electron-Windows
+          path: electron
+
+      - name: Backup existing application
+        shell: pwsh
+        run: |
+          $source = 'C:\Apps'
+          $backup = 'C:\AppsBackup'
+          if (!(Test-Path $backup)) {
+            New-Item -Path $backup -ItemType Directory | Out-Null
+          }
+          robocopy $source $backup /MIR
+
+      - name: Clean target directory
+        shell: pwsh
+        run: |
+          Remove-Item -Path 'C:\Apps\*' -Recurse -Force
+
+      - name: Deploy application files
+        shell: pwsh
+        run: |
+          Copy-Item -Path 'app\*' -Destination 'C:\Apps' -Recurse -Force
+          Copy-Item -Path 'electron\dist\MedicationManager-win32-x64\*' -Destination 'C:\Apps' -Recurse -Force
+
+  deploy-production:
+    name: Deploy to Production
+    needs: deploy-development
+    runs-on: [self-hosted, Windows, MedicationManager, scheduledTask]
+    environment: Production
+
+    steps:
+      - name: Download C++ EXE Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: MedicationManager-exe
+          path: app
+
+      - name: Download Electron App Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: MedicationManager-Electron-Windows
+          path: electron
+
+      - name: Backup existing application
+        shell: pwsh
+        run: |
+          $source = 'C:\Apps'
+          $backup = 'C:\AppsBackup'
+          if (!(Test-Path $backup)) {
+            New-Item -Path $backup -ItemType Directory | Out-Null
+          }
+          robocopy $source $backup /MIR
+
+      - name: Clean target directory
+        shell: pwsh
+        run: |
+          Remove-Item -Path 'C:\Apps\*' -Recurse -Force
+
+      - name: Deploy application files
+        shell: pwsh
+        run: |
+          Copy-Item -Path 'app\*' -Destination 'C:\Apps' -Recurse -Force
+          Copy-Item -Path 'electron\dist\MedicationManager-win32-x64\*' -Destination 'C:\Apps' -Recurse -Force
