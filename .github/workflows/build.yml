@@ -40,13 +40,8 @@ jobs:
           cd build
           ctest -C Release --output-on-failure
 
-      # ---------------------------
-      # ELECTRON BUILD STEPS BEGIN
-      # ---------------------------
-
       - name: Copy EXE into Electron App
-        run: |
-          copy build/Release/MedicationManager.exe electron/app/
+        run: copy build\Release\MedicationManager.exe electron\app\
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -59,8 +54,7 @@ jobs:
 
       - name: Package Electron App
         working-directory: electron
-        run: |
-          npx electron-packager . MedicationManager --platform=win32 --arch=x64 --out=dist
+        run: npx electron-packager . MedicationManager --platform=win32 --arch=x64 --out=dist
 
       - name: Upload Packaged Electron App
         uses: actions/upload-artifact@v4
@@ -71,7 +65,7 @@ jobs:
   deploy-development:
     name: Deploy to Development
     needs: build
-    runs-on: [self-hosted,Windows,MedicationManager,Dev]
+    runs-on: [self-hosted, Windows, MedicationManager, Dev]
     environment: Development
 
     steps:
@@ -96,11 +90,18 @@ jobs:
             New-Item -Path $backup -ItemType Directory | Out-Null
           }
           robocopy $source $backup /MIR
+          $exitCode = $LASTEXITCODE
+          if ($exitCode -le 3) {
+            Write-Host "Robocopy succeeded with exit code: $exitCode"
+            exit 0
+          } else {
+            Write-Error "Robocopy failed with exit code: $exitCode"
+            exit $exitCode
+          }
 
       - name: Clean target directory
         shell: pwsh
-        run: |
-          Remove-Item -Path 'C:\Apps\*' -Recurse -Force
+        run: Remove-Item -Path 'C:\Apps\*' -Recurse -Force
 
       - name: Deploy application files
         shell: pwsh
@@ -111,7 +112,7 @@ jobs:
   deploy-production:
     name: Deploy to Production
     needs: deploy-development
-    runs-on: [self-hosted,Windows,MedicationManager,Prod]
+    runs-on: [self-hosted, Windows, MedicationManager, Prod]
     environment: Production
 
     steps:
@@ -136,11 +137,18 @@ jobs:
             New-Item -Path $backup -ItemType Directory | Out-Null
           }
           robocopy $source $backup /MIR
+          $exitCode = $LASTEXITCODE
+          if ($exitCode -le 3) {
+            Write-Host "Robocopy succeeded with exit code: $exitCode"
+            exit 0
+          } else {
+            Write-Error "Robocopy failed with exit code: $exitCode"
+            exit $exitCode
+          }
 
       - name: Clean target directory
         shell: pwsh
-        run: |
-          Remove-Item -Path 'C:\Apps\*' -Recurse -Force
+        run: Remove-Item -Path 'C:\Apps\*' -Recurse -Force
 
       - name: Deploy application files
         shell: pwsh
