@@ -99,15 +99,17 @@ jobs:
             exit $exitCode
           }
 
-      - name: Clean target directory
+      - name: Clean target directory (retain data.json)
         shell: pwsh
-        run: Remove-Item -Path 'C:\Apps\*' -Recurse -Force
+        run: |
+          Get-ChildItem -Path 'C:\Apps\' -Recurse |
+            Where-Object { $_.Name -ne 'data.json' } |
+            Remove-Item -Recurse -Force
 
       - name: Deploy application files
         shell: pwsh
         run: |
-          Copy-Item -Path 'app\*' -Destination 'C:\Apps' -Recurse -Force
-          Copy-Item -Path 'electron\dist\MedicationManager-win32-x64\*' -Destination 'C:\Apps' -Recurse -Force
+          Copy-Item -Path 'electron\*' -Destination 'C:\Apps' -Recurse -Force
 
   deploy-production:
     name: Deploy to Production
