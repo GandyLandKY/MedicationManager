@@ -1,4 +1,6 @@
-# MedicationManager
+## This is not a working solution, it is a school project emphasizing project collaboration, not coding.
+
+#MedicationManager
 
 ## Overview
 MedicationManager is a simple C++ application designed to demonstrate medication management functionality, with room for expansion. The core application includes a basic reminder system and can be extended to support scheduling, alerts, and database integration.
